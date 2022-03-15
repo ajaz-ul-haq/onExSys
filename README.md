@@ -18,6 +18,8 @@ A basic laravel project in which there are 3 types of Users:
 <b><em>Student.</em></b>
 - Can view all classes Examinations.
 - Can Solve examinations created for his classes.
+- Can't Submit an Exam more than one time
+- Can view his marks in <em>My Submission </em> section
 
 ## Registration Process
 - User have a choice to create an account of his own Choice.
