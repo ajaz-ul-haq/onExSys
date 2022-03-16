@@ -185,7 +185,7 @@ class userController extends Controller
                         ->where('email', '=', $email)
                         ->where('password', '=', $password)
                         ->where('dob', '=', $dob)
-                        ->value('class');
+                        ->value('rollno');
                     Session::put('type','student');
                     Session::put('class',$class);
                     Session::put('roll',$rollNo);
