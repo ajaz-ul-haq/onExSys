@@ -22,6 +22,7 @@ class userController extends Controller
 {
 
     public function gotoLink(){
+
         if(Session::get('type')=='admin'){
             return redirect('admin-panel');
         }
@@ -238,15 +239,16 @@ class userController extends Controller
                 $admin->status = 'active';
                 $admin->save();
 
-                $master_admin = Admin::find(1)['email'];
+
+                $master_admin_email= Admin::find(1)['email'];
                 $details = [
-                    'admin_name'=> $master_admin,
+                    'admin_name'=> $master_admin_email,
                     'name'=> $admin->name,
                     'email' => $admin->email,
                     'dob' => $admin->dob,
                     'prev' => 'admin'
                 ];
-                Mail::to('auhk.me@gmail.com')->send(new newUserAccountMail($details));
+                Mail::to($master_admin_email)->send(new newUserAccountMail($details));
                 return view('login',['activated'=> 'true']);
             }
             else{
@@ -266,16 +268,16 @@ class userController extends Controller
                 $teacher->status = 'active';
                 $teacher->save();
 
-                $admin = Admin::find(1)['email'];
+                $master_admin_email= Admin::find(1)['email'];
 
                 $details = [
-                    'admin_name'=> $admin,
+                    'admin_name'=> $master_admin_email,
                     'name'=> $teacher->name,
                     'email' => $teacher->email,
                     'dob' => $teacher->dob,
                     'prev' => 'teacher'
                 ];
-                Mail::to($admin)->send(new newUserAccountMail($details));
+                Mail::to($master_admin_email)->send(new newUserAccountMail($details));
                 return view('login',['activated'=> 'true']);
             }
             else{
@@ -294,15 +296,16 @@ class userController extends Controller
                 $student= Student::find($id);
                 $student->status = 'active';
                 $student->save();
-                $master_admin = Admin::find(1)['email'];
+
+                $master_admin_email = Admin::find(1)['email'];
                 $details = [
-                    'admin_name'=> $master_admin,
+                    'admin_name'=> $master_admin_email,
                     'name'=> $student->name,
                     'email' => $student->email,
                     'dob' => $student->dob,
                     'prev' => 'student'
                 ];
-                Mail::to('auhk.me@gmail.com')->send(new newUserAccountMail($details));
+                Mail::to($master_admin_email)->send(new newUserAccountMail($details));
                 return view('login',['activated'=> 'true']);
             }
             else{
@@ -454,4 +457,5 @@ class userController extends Controller
             }
         }
     }
+
 }

@@ -9,6 +9,7 @@ A basic laravel project in which there are 3 types of Users:
 - Can Edit all Users (other admins, teachers, students).
 - Can Delete (teachers, students).
 - Can View All the Examination Created.
+- Master Admin (id 1) will get an In App notifiction as well as an email notification when a new user registers.
 
 <b><em>Teacher.</em></b>
 - Can View List of all Examinations created by all teachers.
@@ -43,5 +44,6 @@ A basic laravel project in which there are 3 types of Users:
 - Database Queries
 - Session Management
 - Mailing System
+- Notification
 
 <em><strong>   By Ajaz Ul Haq </strong></em>

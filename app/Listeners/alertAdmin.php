@@ -3,8 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\createAdmin;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Models\Admin;
+use App\Notifications\userNotification;
 
 class alertAdmin
 {
@@ -26,6 +26,7 @@ class alertAdmin
      */
     public function handle(createAdmin $event)
     {
-        //
+        $admin = Admin::find(1);
+        $admin->notify(new userNotification($event->name,'admin'));
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\createTeacher;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\Admin;
+use App\Notifications\userNotification;
 
 class alertTeacher
 {
@@ -27,6 +26,7 @@ class alertTeacher
      */
     public function handle(createTeacher $event)
     {
-//        echo "<div class='container-fluid alert alert-success'><strong>Account Created Successfully!!<a style='color:green' href='login'> <em>Login Now</em></a> </strong></div>";
+        $admin = Admin::find(1);
+        $admin->notify(new userNotification($event->name,'teacher'));
     }
 }

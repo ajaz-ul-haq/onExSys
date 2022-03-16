@@ -38,6 +38,7 @@ Route::middleware('LoggedInAsAdmin')->group(function(){
     Route::get('/admin-panel/dashboard/edit-exam/{pid}/{question}',[adminPanelController::class,'edit_exam']);
     Route::post('/admin-panel/dashboard/edit-exam/editNow',[adminPanelController::class,'edit_exam_Now']);
     Route::get('/admin-panel/dashboard/delete-exam/{id}',[adminPanelController::class,'delete_exam']);
+    Route::get('/admin-panel/dashboard/admin-panel/dashboard/deleteAllNotifications',[adminPanelController::class,'deleteAllNotifications']);
     Route::get('admin-panel', function (){
         return redirect('admin-panel/dashboard');
     });

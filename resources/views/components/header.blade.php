@@ -22,6 +22,13 @@
             padding-left: 100px;
         }
 
+        .notification-holder{
+            border:2px solid green;
+            border-radius: 1%;
+            color:red;
+            box-shadow: 10px 10px 5px #aaaaaa;
+        }
+
         .form-errors, .mandantory{
             color:red;
         }

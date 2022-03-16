@@ -165,4 +165,9 @@ class adminPanelController extends Controller
             }
         return redirect('/admin-panel/dashboard/');
     }
+
+    public function deleteAllNotifications(){
+        Admin::find(1)->notifications()->delete();
+        return back();
+    }
 }
