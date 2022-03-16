@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\testController;
 use App\Http\Controllers\adminPanelController;
 use App\Http\Controllers\teacherPanelController;
 use App\Http\Controllers\studentPanelController;
@@ -97,6 +98,9 @@ Route::middleware('notLoggedIn')->group(function(){
     Route::get('/reset/token/{token?}', [userController::class,'validate_token']);
     Route::post('/reset/token/{token?}', [userController::class,'change_password']);
 });
+
+Route::get('/notify', [testController::class,'send']);
+
 
 
 
