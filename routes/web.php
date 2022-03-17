@@ -26,19 +26,25 @@ Route::get('/login',function(){
 
 Route::middleware('LoggedInAsAdmin')->group(function(){
     Route::get('admin-panel/dashboard/{show?}', [adminPanelController::class,'dashboard']);
+
+
     Route::get('/admin-panel/dashboard/admin/edit/{id?}',[adminPanelController::class,'admin_editpage']);
     Route::get('/admin-panel/dashboard/teacher/edit/{id?}',[adminPanelController::class,'teacher_editpage']);
     Route::get('/admin-panel/dashboard/student/edit/{id?}',[adminPanelController::class,'student_editpage']);
+
     Route::post('/admin-panel/dashboard/admin/edit',[adminPanelController::class,'admin_editor']);
     Route::post('/admin-panel/dashboard/teacher/edit',[adminPanelController::class,'teacher_editor']);
-    Route::get('/admin-panel/dashboard/teacher/delete/{id?}',[adminPanelController::class,'teacher_delete']);
     Route::post('/admin-panel/dashboard/student/edit',[adminPanelController::class,'student_editor']);
+
+    Route::get('/admin-panel/dashboard/teacher/delete/{id?}',[adminPanelController::class,'teacher_delete']);
     Route::get('/admin-panel/dashboard/student/delete/{id?}',[adminPanelController::class,'student_delete']);
+
     Route::get('/admin-panel/dashboard/view-exam/{id}',[adminPanelController::class,'view_exam']);
     Route::get('/admin-panel/dashboard/edit-exam/{pid}/{question}',[adminPanelController::class,'edit_exam']);
     Route::post('/admin-panel/dashboard/edit-exam/editNow',[adminPanelController::class,'edit_exam_Now']);
     Route::get('/admin-panel/dashboard/delete-exam/{id}',[adminPanelController::class,'delete_exam']);
-    Route::get('/admin-panel/dashboard/admin-panel/dashboard/deleteAllNotifications',[adminPanelController::class,'deleteAllNotifications']);
+
+    Route::get('/admin-panel/dashboard/deleteAllNotifications',[adminPanelController::class,'deleteAllNotifications']);
     Route::get('admin-panel', function (){
         return redirect('admin-panel/dashboard');
     });

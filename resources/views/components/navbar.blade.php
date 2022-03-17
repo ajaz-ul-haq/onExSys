@@ -19,7 +19,7 @@
                         </a>
                         <ul class="dropdown-menu" style="color:black; border:1px solid green; border-radius:5%; min-width:300px; padding:10px; background-color:lightgrey; ">
                             @if(count(App\Models\Admin::find(1)->notifications)>0)
-                            <span style="float:right;"><a href='admin-panel/dashboard/deleteAllNotifications' style="color:red;">Delete All</a></span>
+                            <span style="float:right;"><a href='/admin-panel/dashboard/deleteAllNotifications' style="color:red;">Delete All</a></span>
                             @foreach(App\Models\Admin::find(1)->notifications as $notification)
                                 @if($notification['read_at']!=NULL)
                                       <li style="border-bottom: 1px solid green; padding-top: 8px;"><strong><em>{{$notification['data']['name']}}</em></strong> just signed up as a <b><em>{{$notification['data']['type']}}</em> </b></li>
