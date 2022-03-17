@@ -55,8 +55,7 @@ class userNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name'=>$this->name,
-            'type'=>$this->type,
+            'data'=>$this->name.' just signed up as '.$this->type
             //
         ];
     }

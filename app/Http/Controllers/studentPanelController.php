@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Paper;
 use App\Models\Student;
 use App\Models\Mark;
+use App\Notifications\newExamSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -80,6 +82,13 @@ class studentPanelController extends Controller
         $marks->created_at = Carbon::Now();
         $marks->updated_at = Carbon::Now();
         $marks->save();
+
+        $student_name = DB::table('students')->where('email','=',Session::get('email'))->value('name');
+        $subject = Paper::find(Session::get('now_solving'))['subject'];
+        $class = Paper::find(Session::get('now_solving'))['class'];
+
+        $admin = Admin::find(1);
+        $admin->notify(new newExamSubmitted($student_name, $subject,$class));
         return view('students.testpage',['questions'=>$questions, 'correct_question'=>$correct_question]);
     }
 }

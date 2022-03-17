@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Paper;
 use App\Models\Question;
 use App\Models\Student;
+use App\Notifications\newExamNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -113,6 +115,11 @@ class teacherPanelController extends Controller
                 $paper->time = $request->time;
                 $paper->creator = Session::get('email');
                 $paper->save();
+
+                $teacher = DB::table('teachers')->where('email','=',Session::get('email'))->value('name');
+
+                $admin =Admin::find(1);
+                $admin->notify(new newExamNotification($teacher,$request->subject,$request->class));
 
 
             }
