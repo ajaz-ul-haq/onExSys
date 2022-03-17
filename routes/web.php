@@ -44,7 +44,7 @@ Route::middleware('LoggedInAsAdmin')->group(function(){
     Route::post('/admin-panel/dashboard/edit-exam/editNow',[adminPanelController::class,'edit_exam_Now']);
     Route::get('/admin-panel/dashboard/delete-exam/{id}',[adminPanelController::class,'delete_exam']);
 
-    Route::get('/admin-panel/dashboard/deleteAllNotifications',[adminPanelController::class,'deleteAllNotifications']);
+    Route::get('/admin-panel/deleteAllNotifications',[adminPanelController::class,'deleteAllNotifications']);
     Route::get('admin-panel', function (){
         return redirect('admin-panel/dashboard');
     });
@@ -54,15 +54,18 @@ Route::middleware('LoggedInAsAdmin')->group(function(){
 
 Route::middleware('LoggedInAsTeacher')->group(function(){
     Route::get('teachers-panel/dashboard/{show?}', [teacherPanelController::class,'dashboard']);
+
     Route::get('teachers-panel/dashboard/view/{pid?}', [teacherPanelController::class,'view']);
     Route::get('teachers-panel/dashboard/edit/{pid?}/{question?}', [teacherPanelController::class,'edit']);
-    Route::get('teachers-panel/dashboard/delete/{pid?}/{question?}', [teacherPanelController::class,'delete']);
     Route::post('teachers-panel/dashboard/editNow',[teacherPanelController::class,'editNow']);
+    Route::get('teachers-panel/dashboard/delete/{pid?}/{question?}', [teacherPanelController::class,'delete']);
+
     Route::view('teachers-panel/create', 'teachers.create');
     Route::view('teachers-panel/create/start','/');
     Route::post('teachers-panel/create/start',[teacherPanelController::class,'setBasic']);
     Route::get('teachers-panel/create/stop',[teacherPanelController::class,'stopAddingQuestion']);
     Route::post('teachers-panel/create/next',[teacherPanelController::class,'goForNextQuestion']);
+
     Route::get('teachers-panel', function (){
         return redirect('teachers-panel/dashboard');
     });

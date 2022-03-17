@@ -19,12 +19,12 @@
                         </a>
                         <ul class="dropdown-menu" style="color:black; border:1px solid green; border-radius:5%; min-width:300px; padding:10px; background-color:lightgrey; ">
                             @if(count(App\Models\Admin::find(1)->notifications)>0)
-                            <span style="float:right;"><a href='/admin-panel/dashboard/deleteAllNotifications' style="color:red;">Delete All</a></span>
+                            <li style="text-align:right; background-color:#F7F7F7; padding:5px; border-bottom: 1px solid green; padding-top: 8px;"><span><a href='deleteAllNotifications' style="color:red;">Delete All&nbsp</a></span></li>
                             @foreach(App\Models\Admin::find(1)->notifications as $notification)
                                 @if($notification['read_at']!=NULL)
-                                      <li style="border-bottom: 1px solid green; padding-top: 8px;"><strong><em>{{$notification['data']['name']}}</em></strong> just signed up as a <b><em>{{$notification['data']['type']}}</em> </b></li>
+                                      <li style="background-color:#F7F7F7; padding:5px; border-bottom: 1px solid green; padding-top: 8px;"><strong><em>{{$notification['data']['name']}}</em></strong> just signed up as a <b><em>{{$notification['data']['type']}}</em> </b></li>
                                 @else
-                                <li style="border-bottom: 1px solid green; padding-top: 8px;"><strong><em><span style="color:red;">*</span> {{$notification['data']['name']}}</em></strong> just signed up as a <b><em>{{$notification['data']['type']}}</em> </b></li>
+                                <li style="background-color:#EEEEEE; border-bottom: 1px solid green; padding-top: 8px;"><strong><em><span style="color:red;">*</span> {{$notification['data']['name']}}</em></strong> just signed up as a <b><em>{{$notification['data']['type']}}</em> </b></li>
                                 @endif
                                     {{$notification->markAsRead()}}
                             @endforeach
