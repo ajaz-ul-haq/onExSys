@@ -23,12 +23,12 @@ A basic laravel project in which there are 3 types of Users:
 - Can view his marks in <em>My Submission </em> section
 
 ## Registration Process
-- User have a choice to create an account of his own Choice.
+- User can create an account of his own Choice (Admin/Teacher/Student).
 - User have to provide basic details.
-- An account activation message will be sent to registered User.
+- An account activation mail will be sent to registered email.
 - User must activate the account by clicking the email link.
 - After account activation User can Log In.
-- Lost Password cab be recovered using <b>Forgot Password</b> option.
+- Lost Password can be recovered using <b>Forgot Password</b> option.
 - User must have to verify his email to reset password.
 - <em>After every successfull account creation a new account creation email will sent to Master Admin (The very first Admin)</em>.
 
