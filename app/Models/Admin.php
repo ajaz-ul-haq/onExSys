@@ -10,7 +10,4 @@ class Admin extends Model
 {
     use Notifiable;
     use HasFactory;
-    public function privileges(){
-        return $this->hasOne('App\Models\Privileges');
-    }
 }

@@ -54,6 +54,7 @@ class adminPanelController extends Controller
     }
 
     public function teacher_editor(Request $request){
+
         $teacher = Teacher::find($request->input('teacher_id'));
         $teacher->name = $request->input('name');
         $teacher->email = $request->input('email');
@@ -132,7 +133,9 @@ class adminPanelController extends Controller
             ])
         ){
             $quest = Question::find($request->question_id);
+
             $quest->question = $request->question;
+
             $quest->op1 = $request->op1;
             $quest->op2 = $request->op2;
             $quest->op3 = $request->op3;

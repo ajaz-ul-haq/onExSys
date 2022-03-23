@@ -41,9 +41,11 @@ A basic laravel project in which there are 3 types of Users:
 - Events & Listener
 - Migrations
 - Models
+- Factories
 - Database Queries
 - Session Management
 - Mailing System
 - Notification
+- Test Cases
 
-<em><strong>   By Ajaz Ul Haq </strong></em>
+<strong>   By <em>Ajaz Ul Haq </em></strong>
