@@ -24,6 +24,40 @@ class userTest extends TestCase
         $response->assertStatus(200);
     }
 
+
+    public function test_admin_signed_up_successfully(){
+        $admin = Admin::factory()->create();
+        $this->post('/admin-panel/signup',$admin->toArray());
+
+
+        $this->assertDatabaseHas('admins',[
+            'name'=> $admin['name'],
+            'email'=>$admin['email'],
+        ]);
+    }
+
+    public function test_teacher_signed_up_successfully(){
+        $teacher = Teacher::factory()->create();
+        $this->post('/teachers-panel/signup',$teacher->toArray());
+
+
+        $this->assertDatabaseHas('teachers',[
+            'name'=> $teacher['name'],
+            'email'=>$teacher['email'],
+        ]);
+    }
+
+    public function test_student_signed_up_successfully(){
+        $student = Student::factory()->create();
+        $this->post('/student-panel/signup',$student->toArray());
+
+
+        $this->assertDatabaseHas('students',[
+            'name'=> $student['name'],
+            'email'=>$student['email'],
+        ]);
+    }
+
     public function test_admin_will_be_redirected_to_admin_panel_if_logged_in(){
         $response = $this->withSession(['type'=>'admin'])->get('/');
         $response->assertRedirect('/admin-panel/');
