@@ -110,19 +110,19 @@ class apiController extends Controller
             foreach($data as $user){
                 if($query!=''){
                     if(preg_match('/'.$query.'/i', $user['name'])){
-                        $user['name'] = "<span style='background:yellow'>".$user['name']."</span>";
+                        $user['name'] = $this->getFormattedText($user['name'],$this->getQueryLocation($query,$user['name']),strlen($query));
                     }
 
                     if(preg_match('/'.$query.'/i', $user['email'])){
-                        $user['email'] = "<span style='background:yellow'>".$user['email']."</span>";
+                        $user['email'] = $this->getFormattedText($user['email'],$this->getQueryLocation($query,$user['email']),strlen($query));
                     }
 
                     if(preg_match('/'.$query.'/i', $user['class'])){
-                        $user['class'] = "<span style='background:yellow'>".$user['class']."</span>";
+                        $user['class'] = $this->getFormattedText($user['email'],$this->getQueryLocation($query,$user['class']),strlen($query));
                     }
 
                     if(preg_match('/'.$query.'/i', $user['rollno'])){
-                        $user['rollno'] = "<span style='background:yellow'>".$user['rollno']."</span>";
+                        $user['rollno'] = $this->getFormattedText($user['rollno'],$this->getQueryLocation($query,$user['rollno']),strlen($query));
                     }
                 }
 
@@ -138,5 +138,37 @@ class apiController extends Controller
         }
         else $content ='No Record Found';
         return $content;
+    }
+
+    public function getQueryLocation($query, $word){
+        for($i=0; $i<strlen($word); $i++){
+            if($word[$i]==$query[0]){
+                if(strcmp(substr($word,$i,strlen($query)),$query)==0){
+                    return $i;
+                };
+            }
+        }
+    }
+
+    public function getFormattedText($word,$location,$length){
+        $wordPart1=$wordPart2=$wordPart3="";
+        $i=0;$j=0;
+
+        for($i=0; $i<$location; $i++){
+            $wordPart1[$j]=  $word[$i];
+            ++$j;
+        }
+        $j=0;
+        for($i=$location; $i<$location+$length; $i++){
+            $wordPart2[$j]=  $word[$i];
+            ++$j;
+        }
+        $j=0;
+        for($i=$location+$length; $i<strlen($word); $i++){
+            $wordPart3[$j]=  $word[$i];
+            $j++;
+        }
+
+        return "$wordPart1<span style='background:yellow;'>$wordPart2</span>$wordPart3";
     }
 }
